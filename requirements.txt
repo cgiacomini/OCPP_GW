@@ -1,3 +1,4 @@
-websockets
 confluent-kafka
 ocpp
+websocket-client
+behave

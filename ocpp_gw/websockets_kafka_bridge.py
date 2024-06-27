@@ -23,8 +23,8 @@ class WebSocketKafkaBridge(KafkaHandler, WebSocketHandler):
     ############################################################################
     async def on_kafka_message_received(self, message, charge_point_id):
         """ 
-        This method is called when a message is received from Kafka. 
-        Is the implementation of the on_kafka_message_received's KafkaHandler 
+        This method is called when a message is received from Kafka.
+        Is the implementation of the on_kafka_message_received's KafkaHandler
         abstract method. 
         If received message has status rejected, close the WebSocket connection.
         """
@@ -38,9 +38,13 @@ class WebSocketKafkaBridge(KafkaHandler, WebSocketHandler):
            logger.error("WKB: Operation rejected! - Closing connection."
                      f"charge_point_id: {charge_point_id}") 
 
-           client = self.clients.get(charge_point_id)
-           if client:
-               await client.close(reason="Server closing connection")
+           # Changes Here
+           # CSMS: Typically will not close the connection automatically but
+           # will respond with the appropriate status and let the Charge Point
+           # handle it.
+           #client = self.clients.get(charge_point_id)
+           #if client:
+           #    await client.close(reason="Server closing connection")
 
     ############################################################################
     async def on_websocket_message_received(self, websocket, message,

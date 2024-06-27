@@ -4,6 +4,7 @@ import json
 import logging
 import websockets
 from websockets.server import WebSocketServerProtocol
+from websockets.exceptions import ConnectionClosedError, ConnectionClosedOK
 from utils import Config
 
 logger = logging.getLogger('ocpp_gw')
@@ -71,11 +72,21 @@ class WebSocketHandler:
 
         # Call subclass method to handle the message.
         try:
+
             async for message in websocket:
                 await self.on_websocket_message_received(
                         websocket,
                         message,
                         charge_point_id)
+
+        except ConnectionClosedError as e:
+            logger.error(f"Connection closed with error: {e}")
+        except ConnectionClosedOK:
+            logger.info("Connection closed normally")
+        except asyncio.IncompleteReadError as e:
+            logger.error(f"Incomplete read error: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected error: {e}")
         finally:
             logger.info("WSH: Client disconnected. "
                      f"charge_point_id: {charge_point_id}")
