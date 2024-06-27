@@ -13,7 +13,7 @@ and forwards them to the Charge Points
 2. [Run OCPP Gateway](#run-OCPP-gateway)
   1. [Python Virtual Environment Setup](#python-virtual-environment-setup)
   2. [Configuration file](#configuration0-file)
-  3. [OCPP Charging Station Management System (CSMS)](#ocpp-charging-Station-Management-system)
+  3. [OCPP Charging Station Management System (CSMS)](#ocpp-charging-Station-Management-system-(-CSMS-))
   4. [OCPP Gateway](#ocpp-gateway)
   5. [Charging Station](#charging-station)
 3. [Testing](#testing)
