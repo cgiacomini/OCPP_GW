@@ -7,15 +7,15 @@ The OCPP Gateway application also listens for messages from the Kafka topic
 and forwards them to the Charge Points
 
 1. [Kafka Setup](#kafka-setup)
-  1. [Clone Repository](#clone-repositoty)
-  2. [configuration](#configuration)
-  3. [Startup](#startup)
+    1. [Clone Repository](#clone-repositoty)
+    2. [configuration](#configuration)
+    3. [Startup](#startup)
 2. [Run OCPP Gateway](#run-OCPP-gateway)
-  1. [Python Virtual Environment Setup](#python-virtual-environment-setup)
-  2. [Configuration file](#configuration0-file)
-  3. [OCPP Charging Station Management System (CSMS)](#ocpp-charging-Station-Management-system-(-CSMS-))
-  4. [OCPP Gateway](#ocpp-gateway)
-  5. [Charging Station](#charging-station)
+    1. [Python Virtual Environment Setup](#python-virtual-environment-setup)
+    2. [Configuration file](#configuration0-file)
+    3. [OCPP Charging Station Management System](#ocpp-charging-Station-Management-system)
+    4. [OCPP Gateway](#ocpp-gateway)
+    5. [Charging Station](#charging-station)
 3. [Testing](#testing)
 
 # Kafka Setup
@@ -86,7 +86,7 @@ listening_host=0.0.0.0
 listening_port=9000
 ```
 
-## OCPP Charging Station Management System (CSMS) 
+## OCPP Charging Station Management System
 The module that implements the Charge Point Management System (CSMS) server,
 listens for messages from the Kafka topic ***in_messages***, process them and and send the
 response back to the Kafka topic ***out_messages***.
