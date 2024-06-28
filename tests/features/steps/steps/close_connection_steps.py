@@ -1,7 +1,7 @@
 import asyncio
 from behave import then
 
-@then('close the connection')
+@then('the charging station close the connection')
 def step_then_close_connection(context):
     """Close the connection to the server."""
     async def close(cp_info):

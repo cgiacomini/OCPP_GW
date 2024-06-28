@@ -6,7 +6,8 @@ from utils.charge_point import ChargePoint
 
 SERVER_URL = "ws://localhost:9000"
 
-@given('I have a charging station with unique_id "{unique_id}" and subprotocol "{subprotocol}" connected to the server')
+
+@given("a charging station with unique_id {unique_id} and subprotocol {subprotocol} connected to CSMS")
 def step_given_charging_station_connected(context, unique_id, subprotocol):
     """Connect the charging station to the server with the given unique ID and subprotocol."""
     async def connect():

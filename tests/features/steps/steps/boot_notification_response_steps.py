@@ -1,7 +1,7 @@
 from behave import then
 
-@then('I should receive "{response}" as response')
-def step_then_receive_accepted_response(context, response):
+@then('the CSMS should respond with a BootNotificationResponse "{response}" as response')
+def step_then_receive_boot_notification_response(context, response):
     """Verify that the expected response is received."""
     for cp_info in context.charge_points:
         assert "response" in cp_info, "No response received"

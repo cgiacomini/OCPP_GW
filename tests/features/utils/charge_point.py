@@ -14,6 +14,7 @@ class ChargePoint:
         self.unique_id = unique_id
         self.heartbeat_task = None
         self.heartbeat_interval = None
+        self.heartbeat_response = None
 
         if protocol == "ocpp2.0.1":
             self.charge_point = cp_v201(unique_id, ws)
@@ -61,6 +62,7 @@ class ChargePoint:
         try:
             response = await self.charge_point.call(request)
             logging.info(f"Received Heartbeat response: {response}")
+            self.heartbeat_response = response
         except Exception as e:
             logging.error(f"Error sending Heartbeat: {e}")
 
