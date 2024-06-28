@@ -4,25 +4,23 @@ from aiohttp import ClientSession
 from utils.websocket_wrapper import WebSocketWrapper
 from utils.charge_point import ChargePoint
 
-SERVER_URL = "ws://localhost:9000"
-
-
 @given("a charging station with unique_id {unique_id} and subprotocol {subprotocol} connected to CSMS")
-def step_given_charging_station_connected(context, unique_id, subprotocol):
+def step_impl(context, unique_id, subprotocol):
     """Connect the charging station to the server with the given unique ID and subprotocol."""
     async def connect():
+        server_url = context.server_url
         session = ClientSession()
         ws = await session.ws_connect(
-            f"{SERVER_URL}/{unique_id}",
+            f"{server_url}/{unique_id}",
             protocols=[subprotocol]
         )
         ws_wrapper = WebSocketWrapper(ws)
         charge_point = ChargePoint(unique_id, ws_wrapper, subprotocol)
         connected = True
 
-        # Storing in context
+        # # Storing in context
         if not hasattr(context, "charge_points"):
-            context.charge_points = []
+             context.charge_points = []
         context.charge_points.append({
             "session": session,
             "ws": ws_wrapper,

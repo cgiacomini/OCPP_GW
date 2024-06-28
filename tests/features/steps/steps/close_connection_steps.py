@@ -2,10 +2,11 @@ import asyncio
 from behave import then
 
 @then('the charging station close the connection')
-def step_then_close_connection(context):
+def step_impl(context):
     """Close the connection to the server."""
     async def close(cp_info):
         await cp_info["charge_point"].stop()
+        
         # Ensure the start task is canceled and awaited
         cp_info["start_task"].cancel()
         try:

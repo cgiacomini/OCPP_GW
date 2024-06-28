@@ -23,3 +23,4 @@ Feature: Test OCPP Communication
   Examples:
     | unique_id | subprotocol | vendor  | model   | response | interval |
     | CP_1      | ocpp2.0.1   | VendorX | ModelY  | Accepted | 30       |
+
