@@ -135,7 +135,7 @@ class CSMS(cp):
         return message.create_call_result(
             {
                 "currentTime": datetime.now().isoformat(),
-                "interval": 10,  # set default interval period in seconds
+                "interval": 2,  # set default interval period in seconds
                 "status": return_status,
             }
         )

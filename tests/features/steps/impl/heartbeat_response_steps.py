@@ -2,7 +2,7 @@ from behave import then
 import logging
 
 
-@then('the CSMS should respond with a HeartbeatResponse with the current time')
+@then('the CSMS respond with a HeartbeatResponse with the current time')
 def step_impl(context):
     """Verify that the Heartbeat response contains the current time."""
     for cp_info in context.charge_points:
