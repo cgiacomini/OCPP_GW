@@ -1,7 +1,7 @@
 import logging
 from behave import when
 
-@when('the Charging Station sends a BootNotification message to the CSMS with vendor "{vendor}" and model "{model}"')
+@when('the Charging Station sends a BootNotification to the CSMS with vendor "{vendor}" and model "{model}"')
 def step_impl(context, vendor, model):
     """Send a BootNotification message with the specified vendor and model."""
     async def send_boot_notification(cp_info):

@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  #csms_server:
+  #  build:
+  #    context: .
+  #    dockerfile: Dockerfile
+  #  depends_on:
+  #    - postgresql
+  #  environment:
+  #    CONFIG_FILE: /app/config.cfg
+  #    LOG_FILE: /app/logs/csms_server.log
+  #    LOG_LEVEL: INFO
+  #    PYTHONPATH: /app
+  #  networks:
+  #  - csms_network
+  #  - kafka-kraft-cluster-docker-compose_kafka-network
+
+  postgresql:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      PGUSER: ${PGUSER}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    networks:
+      - csms_network
+
+networks:
+  csms_network:
+    driver: bridge
+  kafka-kraft-cluster-docker-compose_kafka-network:
+    external: true

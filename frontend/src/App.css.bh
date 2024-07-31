@@ -1,0 +1,25 @@
+/* App.css */
+.stations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stations-table th,
+.stations-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.stations-table th {
+  background-color: #f2f2f2;
+}
+
+.stations-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.stations-table tbody tr:hover {
+  background-color: #ddd;
+}
+

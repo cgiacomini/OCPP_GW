@@ -1,7 +1,7 @@
 import asyncio
 from behave import when
 
-@when('the Charging Station sends a Heartbeat request to the CSMS each "{interval}" seconds')
+@when('the Charging Station sends Heartbeat requests to the CSMS for "{interval}" seconds')
 def step_impl(context, interval):
     """Start sending Heartbeat request messages for the specified interval."""
     async def start_heartbeats(cp_info):
@@ -12,7 +12,7 @@ def step_impl(context, interval):
     for cp_info in context.charge_points:
         context.loop.run_until_complete(start_heartbeats(cp_info))
 
-@when('the Charging Station sends an Heartbeat request to the CSMS')
+@when('the Charging Station sends Heartbeat requests to the CSMS')
 def step_impl(context):
     """Sending an Heartbeat request messages to the CSMS."""
     async def send_heartbeat(cp_info):

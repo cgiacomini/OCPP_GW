@@ -2,3 +2,9 @@ confluent-kafka
 ocpp
 websocket-client
 behave
+fastapi 
+uvicorn
+asyncpg
+psycopg2
+aiohttp
+flask_sqlalchemy

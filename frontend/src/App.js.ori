@@ -1,0 +1,46 @@
+// App.js
+import React, { useState, useEffect } from 'react';
+import LeftMenu from './components/LeftMenu';
+import RightPanel from './components/RightPanel';
+import './App.css';
+
+const App = () => {
+    const [selectedMenu, setSelectedMenu] = useState('stations');
+    const [stations, setStations] = useState([]);
+
+    useEffect(() => {
+        // Fetch stations data based on selected menu
+        if (selectedMenu === 'stations') {
+            fetchStationsData();
+        }
+    }, [selectedMenu]);
+
+    const fetchStationsData = async () => {
+        try {
+            // Replace with actual API endpoint
+            const response = await fetch('/api/stations');
+            if (response.ok) {
+                const data = await response.json();
+                setStations(data);
+            } else {
+                console.error('Failed to fetch stations data');
+            }
+        } catch (error) {
+            console.error('Error fetching stations data:', error);
+        }
+    };
+
+    const handleMenuSelect = menu => {
+        setSelectedMenu(menu);
+    };
+
+    return (
+        <div className="App">
+            <LeftMenu onSelect={handleMenuSelect} />
+            <RightPanel stations={stations} />
+        </div>
+    );
+};
+
+export default App;
+

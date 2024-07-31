@@ -1,5 +1,3 @@
-
-
 # OCPP Gateway 
 The OCPP Gateway application is a WebSocket server that listens for incoming
 OCPP messages from the Charge Points and forwards them to a Kafka topic. 

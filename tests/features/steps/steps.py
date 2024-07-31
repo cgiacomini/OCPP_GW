@@ -11,6 +11,7 @@ from impl.heartbeat_request_steps import *
 from impl.heartbeat_response_steps import *
 from impl.open_connection_steps import *
 from impl.close_connection_steps import *
+from impl.send_initial_status import *
 
 logging.basicConfig(level=logging.DEBUG)
 

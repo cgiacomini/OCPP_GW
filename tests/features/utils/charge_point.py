@@ -13,6 +13,8 @@ class ChargePoint:
         self.protocol = protocol
         self.unique_id = unique_id
         self.heartbeat_task = None
+        self.meters_task = None
+        self.meter_value_sample_interval = 5
         self.heartbeat_interval = None
         self.heartbeat_response = None
 
@@ -84,3 +86,27 @@ class ChargePoint:
                 await self.heartbeat_task
             except asyncio.CancelledError:
                 pass
+
+    def send_meter_value(self, meter_value):
+        message = [
+            2,  # MessageType: Call
+            "unique_id",  # Unique ID for the message
+            "MeterValues",  # Action
+            {
+                "connectorId": 1,
+                "meterValue": [
+                    {
+                        "timestamp": meter_value['timestamp'],
+                        "sampledValue": [
+                            {"value": str(meter_value['energy']), "measurand": "Energy.Active.Import.Register"},
+                            {"value": str(meter_value['power']), "measurand": "Power.Active.Import"},
+                            {"value": str(meter_value['voltage']), "measurand": "Voltage"},
+                            {"value": str(meter_value['current']), "measurand": "Current.Import"}
+                        ]
+                    }
+                ]
+            }
+        ]
+        self.ws.send(json.dumps(message))
+        response = self.ws.recv()
+        print(f"Received response: {response}")

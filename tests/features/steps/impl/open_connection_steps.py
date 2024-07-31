@@ -26,7 +26,9 @@ def step_impl(context, unique_id, subprotocol):
             "ws": ws_wrapper,
             "charge_point": charge_point,
             "connected": connected,
-            "start_task": None
+            "start_task": None,
+            "connetors": [ {"connectorId": 1, "type": "Type2", "maxCurrent": 32, "voltage": 230, "status": "Unavailable"},
+                           {"connectorId": 2, "type": "CCS2", "maxCurrent": 100, "voltage": 400, "status": "Unavailable"} ]
         })
 
     context.loop = asyncio.get_event_loop()
